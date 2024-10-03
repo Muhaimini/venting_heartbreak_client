@@ -1,8 +1,8 @@
-import React, { ReactNode, FC } from "react";
+import React, { ReactNode, FC, DOMAttributes } from "react";
 import cx from "classnames";
 import { Size, Color } from "@types";
 
-export interface TextProps {
+export interface TextProps extends DOMAttributes<HTMLDivElement> {
   size?: Size;
   color?: Color;
   className?: string;
@@ -14,6 +14,7 @@ const Text: FC<TextProps> = ({
   color = "black",
   children = null,
   className,
+  ...props
 }) => {
   const textSize = cx({
     "text-xs": size === "xs",
@@ -34,7 +35,11 @@ const Text: FC<TextProps> = ({
     "text-emerald-500": color === "green",
   });
 
-  return <div className={cx(textSize, textColor, className)}>{children}</div>;
+  return (
+    <div {...props} className={cx(textSize, textColor, className)}>
+      {children}
+    </div>
+  );
 };
 
 export default Text;

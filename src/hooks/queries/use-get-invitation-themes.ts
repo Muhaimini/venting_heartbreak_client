@@ -10,7 +10,7 @@ const useGetInvitationThemes = (
   { enabled }: GetInvitationThemesProps = { enabled: true }
 ) => {
   return useQuery({
-    queryKey: [QUERY_KEY.GET_INVITATION_THEME],
+    queryKey: [QUERY_KEY.GET_INVITATION_THEMES],
     queryFn: () => axios.get("/api/v1/invitation_themes"),
     enabled,
   });
