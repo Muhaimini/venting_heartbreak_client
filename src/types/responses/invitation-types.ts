@@ -1,6 +1,7 @@
 export interface InvitationType {
   id: string;
-  value: string;
+  title: string;
+  description: string;
   img_cover: string;
   created_at: Date;
   updated_at: Date;
