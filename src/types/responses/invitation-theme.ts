@@ -4,11 +4,12 @@ export interface InvitationTheme {
   description: string;
   img_cover: string;
   song_src: string;
-  started_at: Date;
-  ended_at: Date;
-  created_at: Date;
-  updated_at: Date;
+  started_at: string;
+  ended_at: string;
+  created_at: string;
+  updated_at: string;
   theme_type: ThemeType;
+  theme_layout: ThemeLayout;
   creator: Creator;
 }
 
@@ -22,4 +23,10 @@ export interface Creator {
 
 export interface ThemeType {
   id: string;
+  title: string;
+}
+
+export interface ThemeLayout {
+  id: string;
+  name: string;
 }

@@ -16,7 +16,7 @@ const HomePage = () => {
 
   return (
     <div className="relative h-screen w-screen overflow-y-auto">
-      <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-gradient-to-b from-rose-300 to-blue-300">
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-gradient-to-b from-white to-indigo-400">
         <h2 className="text-4xl font-bold text-stone-950 text-center z-10">
           Welcome to{" "}
           <span className="bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 text-transparent bg-clip-text drop-shadow-md">
