@@ -11,7 +11,7 @@ const InvitationOptions = () => {
 
   const onSelectTheme = (typeId?: string) => {
     if (typeId) {
-      router.push(`${NAVIGATION_ADDRESS.THEMES}/${typeId}`);
+      router.push(`${NAVIGATION_ADDRESS.THEMES}?type=${typeId}`);
       return;
     }
     router.push(NAVIGATION_ADDRESS.THEMES);
