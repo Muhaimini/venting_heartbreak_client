@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import NAVIGATION_ADDRESS from "~/constants/navigation_addess";
 import { InvitationTheme } from "~/types/responses/invitation-theme";
-
+import cx from "classnames";
 const InvitationTemeCard = (invitation: InvitationTheme) => {
   const router = useRouter();
 
@@ -21,6 +21,9 @@ const InvitationTemeCard = (invitation: InvitationTheme) => {
           src={invitation?.img_cover}
           alt="Card Image"
         />
+        <div className="absolute rounded-md px-2 text-xl mt-1 text-gray-500 dark:text-neutral-400 z-10 right-2 bottom-3 group-hover:bg-white group-hover:text-black">
+          {invitation?.theme_layout?.name}
+        </div>
       </div>
       <div className="flex flex-wrap">
         <div className="p-4 flex flex-col h-full sm:p-7">

@@ -1,8 +1,8 @@
 import React from "react";
-import ThemesByCategory from "~/views/themes/id";
+import TempalteThemeDetails from "~/views/themes/id";
 
-const ThemesByCategoryPage = () => {
-  return <ThemesByCategory />;
+const TempalteThemeDetailsPage = () => {
+  return <TempalteThemeDetails />;
 };
 
-export default ThemesByCategoryPage;
+export default TempalteThemeDetailsPage;
