@@ -1,15 +1,20 @@
 @import "react-quill/dist/quill.snow.css";
 
+$image-size: 260px;
 
-.quill {
+.text-editor, .quill, .ql-editor {
     height: 100%;
 }
 
-.ql-editor {
-    height: 100%;
+.ql-editor img {
+    width: $image-size;
 }
 
 .ql-editor-displayer {
+    img {
+        width: $image-size;
+    }
+
     h1 {
         font-size: 2em !important;
         font-weight: bolder !important;

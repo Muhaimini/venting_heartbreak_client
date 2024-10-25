@@ -45,7 +45,7 @@ const ThemePreviwe = ({ isMinimize = false }) => {
             <AiOutlineClose />
           </div>
           <div
-            className="w-full px-4 py-2 ql-editor-displayer"
+            className="w-full px-4 py-2 ql-editor-displayer ql-editor"
             dangerouslySetInnerHTML={{ __html: page?.content }}
           />
         </div>
