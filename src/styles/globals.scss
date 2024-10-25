@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "./book_effects.scss";
+@import "./flip-book-effect.scss";
+@import "./quill-editor.scss";
 
 :root {
   --background: #ffffff;

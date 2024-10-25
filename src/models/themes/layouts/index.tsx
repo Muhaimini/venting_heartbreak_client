@@ -4,7 +4,6 @@ import React from "react";
 import DefaultWeddingLayout from "./wedding";
 import FlipBook from "./flip-book";
 
-import useQueryParams from "~/hooks/customs/use-query-params";
 import useGetInvitationThemeDetails from "~/hooks/queries/use-get-invitation-theme-detalis";
 import DotsLoading from "~/components/dots-loading";
 
@@ -34,10 +33,7 @@ class ThemeModel {
   };
 }
 
-const ModelLayouts = () => {
-  const params = useQueryParams();
-  const themeDetailId = params?.id as string;
-
+const ModelLayouts = ({ themeDetailId = "" }) => {
   const { data: invitationThemeDetails, isLoading } =
     useGetInvitationThemeDetails({
       enabled: !!themeDetailId,

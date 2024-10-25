@@ -6,6 +6,7 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/views/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/models/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -16,6 +17,7 @@ const config: Config = {
       },
       colors: {
         "transparent-10": "rgba(0,0,0,0.54)",
+        base: "#0a0a0a",
       },
     },
   },

@@ -1,0 +1,42 @@
+@import "react-quill/dist/quill.snow.css";
+
+
+.quill {
+    height: 100%;
+}
+
+.ql-editor {
+    height: 100%;
+}
+
+.ql-editor-displayer {
+    h1 {
+        font-size: 2em !important;
+        font-weight: bolder !important;
+    }
+
+    h2 {
+        font-weight: bolder !important;
+        font-size: 1.5em !important;
+    }
+
+    h3 {
+        font-weight: bolder !important;
+        font-size: 1.7em !important;
+    }
+
+    h4 {
+        font-size: 1em !important;
+        font-weight: bolder !important;
+    }
+
+    h5 {
+        font-size: 0.83em !important;
+        font-weight: bolder !important;
+    }
+
+    h6 {
+        font-size: 0.67em !important;
+        font-weight: bolder !important;
+    }
+}

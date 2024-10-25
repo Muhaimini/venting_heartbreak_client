@@ -1,5 +1,5 @@
 import React from "react";
-import SelectedThemes from "~/views/themes/selected";
+import SelectedThemes from "~/views/selected-themes";
 
 const SelectedThemesPage = () => {
   return <SelectedThemes />;
