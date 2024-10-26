@@ -2,9 +2,17 @@
 
 import React, { Fragment, useMemo } from "react";
 // import Polaroid from "~/components/polaroid";
+
 import useAudioPlayer from "~/hooks/customs/use-audio-player";
 import useFlipBook from "~/hooks/customs/use-flip-book";
 import useGetInvitationSheets from "~/hooks/queries/use-get-invitation-sheets";
+
+const DUMMY_SHEETS_ODD = [{ id: "1", content: "" }];
+
+const DUMMY_SHEETS_EVENT = [
+  { id: "1", content: "" },
+  { id: "2", content: "" },
+];
 
 const Sheets = ({ deskId = "", onPlay = () => {}, onPause = () => {} }) => {
   const { onMovePage, refPage } = useFlipBook();
@@ -16,12 +24,16 @@ const Sheets = ({ deskId = "", onPlay = () => {}, onPause = () => {} }) => {
 
   const dataSheets = useMemo(() => {
     if (invitationSheets?.data) {
-      return invitationSheets.data
-        .map((sheet) => ({
-          id: sheet.id,
-          content: sheet.content,
-        }))
-        .concat({ id: "last", content: "" });
+      const result = invitationSheets.data.map((sheet) => ({
+        id: sheet.id,
+        content: sheet.content,
+      }));
+
+      const isEven = result.length % 2 === 0;
+
+      return !isEven
+        ? [...result, ...DUMMY_SHEETS_ODD]
+        : [...result, ...DUMMY_SHEETS_EVENT];
     }
     return [];
   }, [invitationSheets]);
@@ -41,7 +53,7 @@ const Sheets = ({ deskId = "", onPlay = () => {}, onPause = () => {} }) => {
                 ref={refPage}
               >
                 <div className="h-5/6 flex items-center justify-center">
-                  <div>{sheet.content}</div>
+                  <div dangerouslySetInnerHTML={{ __html: sheet.content }} />
                 </div>
               </div>
               <div
@@ -60,24 +72,22 @@ const Sheets = ({ deskId = "", onPlay = () => {}, onPause = () => {} }) => {
           return (
             <Fragment>
               <div
-                className="page"
-                onClick={(e) =>
-                  onMovePage(e.currentTarget, dataSheets.length + 1)
-                }
+                className="page last-page"
+                onClick={(e) => {
+                  onMovePage(e.currentTarget, dataSheets.length + 1);
+                  onPause();
+                }}
                 ref={refPage}
-              ></div>
+              >
+                <div
+                  className="paragraph flex flex-col"
+                  dangerouslySetInnerHTML={{ __html: sheet.content }}
+                />
+              </div>
               <div
                 className="page last-page"
                 onClick={(e) => {
                   onMovePage(e.currentTarget, dataSheets.length + 2);
-                  onPause();
-                }}
-                ref={refPage}
-              ></div>
-              <div
-                className="page last-page"
-                onClick={(e) => {
-                  onMovePage(e.currentTarget, dataSheets.length + 3);
                   onPlay();
                 }}
                 ref={refPage}
@@ -92,7 +102,10 @@ const Sheets = ({ deskId = "", onPlay = () => {}, onPause = () => {} }) => {
             onClick={(e) => onMovePage(e.currentTarget, (idx += 2))}
             ref={refPage}
           >
-            <div className="paragraph flex flex-col">{sheet.content}</div>
+            <div
+              className="paragraph flex flex-col"
+              dangerouslySetInnerHTML={{ __html: sheet.content }}
+            />
           </div>
         );
       })}

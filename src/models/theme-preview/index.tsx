@@ -4,8 +4,19 @@ import React, { memo } from "react";
 import cx from "classnames";
 import { AiOutlineClose } from "react-icons/ai";
 import useStore from "~/store";
+import usePostInvitationSheet from "~/hooks/mutations/use-post-invitation-sheet";
+import useQueryParams from "~/hooks/customs/use-query-params";
+import useDeleteInvitationSheet from "~/hooks/mutations/use-delete-invitation-sheet";
+
+const creator_id = "b28a90c3-7ba7-4dbc-a026-b9bc88ef99f4";
 
 const ThemePreviwe = ({ isMinimize = false }) => {
+  const params = useQueryParams();
+  const invitation_desk_id = params?.invitation_desk_id as string;
+
+  const { mutate: deleteSheetMutate } = useDeleteInvitationSheet();
+  const { mutate: postSheetMutate } = usePostInvitationSheet();
+
   const {
     invitationPage: {
       pages,
@@ -16,8 +27,28 @@ const ThemePreviwe = ({ isMinimize = false }) => {
     },
   } = useStore();
 
+  const onAddSheet = () => {
+    postSheetMutate(
+      { invitation_desk_id, creator_id },
+      {
+        onSuccess: (response) => {
+          onAddPage({ id: response.data.id, content: response.data.content });
+        },
+      }
+    );
+  };
+
+  const onRemoveSheet = (id: string) => {
+    deleteSheetMutate(
+      { invitation_sheet_id: id },
+      {
+        onSuccess: () => onRemovePage(id),
+      }
+    );
+  };
+
   return (
-    <div className="w-full h-full flex flex-col gap-3 p-10 items-center overflow-auto">
+    <div className="w-full h-full flex flex-col gap-3 p-10 items-center">
       {pages.map((page, idx) => (
         <div
           key={page.id}
@@ -35,8 +66,7 @@ const ThemePreviwe = ({ isMinimize = false }) => {
           <div
             onClick={(event) => {
               event.preventDefault();
-              event.stopPropagation();
-              onRemovePage(page.id);
+              onRemoveSheet(page.id);
             }}
             className={cx("absolute top-1 right-1 cursor-pointer", {
               hidden: !idx || page.id === activePage.id,
@@ -51,8 +81,8 @@ const ThemePreviwe = ({ isMinimize = false }) => {
         </div>
       ))}
       <button
-        onClick={onAddPage}
-        className="px-2 py-1 border border-white rounded-md mt-4 text-white"
+        onClick={onAddSheet}
+        className="px-2 py-1 border border-white rounded-md m-4 text-white"
       >
         Add page
       </button>

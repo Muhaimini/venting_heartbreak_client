@@ -8,6 +8,7 @@ import useGetInvitationSheets from "~/hooks/queries/use-get-invitation-sheets";
 import first from "lodash/first";
 import useStore from "~/store";
 import { useRouter } from "next/navigation";
+import TopBar from "../themes/components/top-bar";
 
 const SelectedThemeDetails = () => {
   const router = useRouter();
@@ -44,12 +45,12 @@ const SelectedThemeDetails = () => {
 
   return (
     <div className="relative bg-gradient-to-b from-blue-400 to-indigo-500 text-black h-full w-full">
-      <div className="h-full w-full flex">
-        <div className="h-full w-full p-5">
-          <div className="text-gray-100 text-xl font-semibold drop-shadow-xl">
-            Invitation Sheet
+      <div className="relative h-full w-full flex">
+        <div className="relative h-full w-full overflow-auto">
+          <TopBar title="Invitation Sheet" />
+          <div className="pb-8">
+            <ThemePreviwe isMinimize={true} />
           </div>
-          <ThemePreviwe isMinimize={true} />
         </div>
         <div className="h-full bg-base p-5 transition-all ease-in-out duration-500 w-[45rem] flex flex-col gap-4">
           <div className="flex items-center justify-end">

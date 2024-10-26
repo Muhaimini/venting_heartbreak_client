@@ -6,7 +6,7 @@ interface Page {
   content: string;
 }
 
-const defaultPage: Page = { id: uuid(), content: "" };
+const defaultPage: Page = { id: "default", content: "" };
 
 export interface InvitationPage {
   activePage: Page;
@@ -15,7 +15,7 @@ export interface InvitationPage {
   onModifyActiveContent(props: Page): void;
   setActivePage(id: string): void;
   onRemovePage(id: string): void;
-  onAddPage(): void;
+  onAddPage(page?: Page): void;
 }
 
 const invitationPageStore: StoreController<{
@@ -53,13 +53,17 @@ const invitationPageStore: StoreController<{
         return state;
       }),
 
-    onAddPage: () =>
-      set(({ invitationPage }) => ({
-        invitationPage: {
-          ...invitationPage,
-          pages: [...invitationPage.pages, { id: uuid(), content: "" }],
-        },
-      })),
+    onAddPage: (page) =>
+      set(({ invitationPage }) => {
+        const newPage = page ?? defaultPage;
+
+        return {
+          invitationPage: {
+            ...invitationPage,
+            pages: [...invitationPage.pages, newPage],
+          },
+        };
+      }),
 
     onRemovePage: (id: string) =>
       set(({ invitationPage }) => {
