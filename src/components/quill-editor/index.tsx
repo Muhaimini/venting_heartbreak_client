@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import ReactQuill from "react-quill";
 import { IoMdImages } from "react-icons/io";
+import usePostImgbb from "~/hooks/mutations/use-post-imgbb";
 
 interface EditorProps extends ReactQuill.ReactQuillProps {
   focusTrigger?: string | number | boolean;
@@ -71,6 +72,7 @@ const formats = [
 
 const QuillEditor = forwardRef<ReactQuill, EditorProps>((props, ref) => {
   const editorRef = useRef<ReactQuill>(null);
+  const { mutate: onUploadImage } = usePostImgbb();
 
   const setFocusToEnd = () => {
     if (!editorRef.current || !props?.focusTrigger) return;
@@ -109,13 +111,21 @@ const QuillEditor = forwardRef<ReactQuill, EditorProps>((props, ref) => {
     const file = e.target.files?.[0];
 
     if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        if (reader.result) {
-          insertImage(reader.result as string);
+      onUploadImage(
+        { name: file?.name, image: file },
+        {
+          onSuccess: (response) => {
+            const url = response.data?.data.image.url.replace(
+              "i.ibb.co",
+              "i.ibb.co.com"
+            );
+            insertImage(url);
+          },
+          onError: (err) => {
+            console.log("r >>", err);
+          },
         }
-      };
-      reader.readAsDataURL(file);
+      );
     }
   };
 

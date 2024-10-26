@@ -3,14 +3,15 @@
 import React, { useState } from "react";
 import ThemeEditor from "~/models/theme-editor";
 import cx from "classnames";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import ThemePreviwe from "~/models/theme-preview";
 
 const SelectedThemeDetails = () => {
   const [isMinimize, setMinimize] = useState(false);
 
-  // const onResize = () => {
-  //   setMinimize((prev) => !prev);
-  // };
+  const onResize = () => {
+    setMinimize((prev) => !prev);
+  };
 
   return (
     <div className="relative bg-gradient-to-b from-blue-400 to-indigo-500 text-black h-full w-full">
@@ -24,15 +25,15 @@ const SelectedThemeDetails = () => {
         <div
           className={cx(
             "h-full bg-base p-5 transition-all ease-in-out duration-500",
-            isMinimize ? "w-[45rem]" : "w-full"
+            isMinimize ? "w-1/2" : "w-full"
           )}
         >
-          {/* <button
+          <button
             onClick={onResize}
             className="text-gray-100 border-white px-2 py-1 rounded-sm"
           >
             {isMinimize ? <FaAngleLeft /> : <FaAngleRight />}
-          </button> */}
+          </button>
           <ThemeEditor />
         </div>
       </div>

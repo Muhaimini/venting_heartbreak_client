@@ -26,7 +26,7 @@ const ThemePreviwe = ({ isMinimize = false }) => {
             "relative shadow-md flex flex-col gap-3 items-center bg-white transition-all ease-in-out duration-500",
             {
               "w-80 min-h-[26rem]": !isMinimize,
-              "w-96 min-h-[32rem]": isMinimize,
+              "w-[26rem] min-h-[34rem]": isMinimize,
               "outline outline-offset-2 outline-green-400":
                 activePage.id === page?.id,
             }
