@@ -4,29 +4,29 @@ import React from "react";
 import DefaultWeddingLayout from "./wedding";
 import FlipBook from "./flip-book";
 
-import useGetInvitationThemeDetails from "~/hooks/queries/use-get-invitation-theme-detalis";
+// import useGetInvitationThemeDetails from "~/hooks/queries/use-get-invitation-theme-detalis";
 import DotsLoading from "~/components/dots-loading";
 
-class ThemeModel {
-  themeDetailId?: string;
-  themeId?: string;
+export class LayoutModel {
+  deskId?: string;
+  layoutId?: string;
   isLoading?: boolean;
 
-  constructor(themeDetailId?: string, themeId?: string, isLoading?: boolean) {
-    this.themeDetailId = themeDetailId;
-    this.themeId = themeId;
+  constructor(deskId: string, layoutId?: string, isLoading?: boolean) {
+    this.deskId = deskId;
+    this.layoutId = layoutId;
     this.isLoading = isLoading;
   }
 
   render = () => {
-    const isFlipBook = this.themeId === "3203a925-9c4b-473f-b772-89318f8aba66";
+    const isFlipBook = this.layoutId === "3203a925-9c4b-473f-b772-89318f8aba66";
 
     if (this.isLoading) {
       return <DotsLoading />;
     }
 
     if (isFlipBook) {
-      return <FlipBook />;
+      return <FlipBook deskId={this.deskId} />;
     }
 
     return <DefaultWeddingLayout />;
@@ -34,16 +34,17 @@ class ThemeModel {
 }
 
 const ModelLayouts = ({ themeDetailId = "" }) => {
-  const { data: invitationThemeDetails, isLoading } =
-    useGetInvitationThemeDetails({
-      enabled: !!themeDetailId,
-      id: themeDetailId!,
-    });
+  // const { data: invitationThemeDetails, isLoading } =
+  //   useGetInvitationThemeDetails({
+  //     enabled: !!themeDetailId,
+  //     id: themeDetailId!,
+  //   });
 
-  const themeId = invitationThemeDetails?.data?.theme_layout?.id;
-  const Theme = new ThemeModel(themeDetailId, themeId, isLoading);
+  // const themeId = invitationThemeDetails?.data?.theme_layout?.id;
+  // const Theme = new LayoutModel(themeDetailId, themeId, isLoading);
 
-  return <Theme.render />;
+  // return <Theme.render />;
+  return <div>Hello..</div>;
 };
 
 export default ModelLayouts;

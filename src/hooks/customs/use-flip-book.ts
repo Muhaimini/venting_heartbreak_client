@@ -29,7 +29,7 @@ const useFlipBook = () => {
     return (pagesRef.current[currentPage] = event as any);
   };
 
-  return { onMovePage, refPage };
+  return { onMovePage, refPage, currentPage };
 };
 
 export default useFlipBook;
