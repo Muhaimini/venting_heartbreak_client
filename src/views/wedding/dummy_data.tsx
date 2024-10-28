@@ -11,6 +11,9 @@ export const WELCOME_PAGE = {
     "https://images.unsplash.com/photo-1519741465751-286f6453ddf4?q=80&w=2787",
 };
 
+export const DUMMY_MUSIC =
+  "https://dl.sndup.net/xqwwr/AURORA%20-%20A%20Potion%20For%20Love%20(Live%20Performance).mp3";
+
 export const BODY = {
   TIMELINE: {
     IMG_1:
@@ -158,7 +161,7 @@ export const DUMMY_SECTIONS = [
     id: "4",
     className: "bg-gradient-to-b from-gray-600 to-gray-400",
     constent: (
-      <div className="font-delafield text-7xl px-10 text-gray-800 flex items-center justify-center flex-col">
+      <div className="font-delafield text-7xl px-10 text-gray-900 flex items-center justify-center flex-col">
         <p>Riri, aku mencintaimu!</p>
         <p>- Aqiel</p>
       </div>
