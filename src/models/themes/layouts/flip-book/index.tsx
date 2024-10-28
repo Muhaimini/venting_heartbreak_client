@@ -1,17 +1,17 @@
 "use client";
 
 import React, { Fragment, useMemo } from "react";
-// import Polaroid from "~/components/polaroid";
 
 import useAudioPlayer from "~/hooks/customs/use-audio-player";
 import useFlipBook from "~/hooks/customs/use-flip-book";
 import useGetInvitationSheets from "~/hooks/queries/use-get-invitation-sheets";
+import useGetInvitationDeskDetails from "~/hooks/queries/use-get-invtation-desk-details";
 
-const DUMMY_SHEETS_ODD = [{ id: "1", content: "" }];
+const DUMMY_SHEETS_ODD = [{ id: "1", content: "<p></p>" }];
 
 const DUMMY_SHEETS_EVENT = [
-  { id: "1", content: "" },
-  { id: "2", content: "" },
+  { id: "1", content: "<p></p>" },
+  { id: "2", content: "<p></p>" },
 ];
 
 const Sheets = ({ deskId = "", onPlay = () => {}, onPause = () => {} }) => {
@@ -114,8 +114,13 @@ const Sheets = ({ deskId = "", onPlay = () => {}, onPause = () => {} }) => {
 };
 
 const FlipBook = ({ deskId = "" }) => {
+  const { data: deskData } = useGetInvitationDeskDetails({
+    id: deskId,
+    enabled: !!deskId,
+  });
+
   const { onPlay, onPause } = useAudioPlayer({
-    src: "https://dl.sndup.net/sjsrb/Fourtwnty%20-%20Sebelah%20Mata.mp3",
+    src: deskData?.data?.music_theme?.src,
   });
 
   return (

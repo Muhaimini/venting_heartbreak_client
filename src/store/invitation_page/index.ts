@@ -6,7 +6,7 @@ interface Page {
   content: string;
 }
 
-const defaultPage: Page = { id: "default", content: "" };
+const defaultPage: Page = { id: "default", content: "<p></p>" };
 
 export interface InvitationPage {
   activePage: Page;

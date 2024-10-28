@@ -5,6 +5,7 @@ export const QUERY_KEY = {
   GET_INVITATON_TYPES: "get-invitation-types",
 
   GET_SELECTED_INVITATONS: "get-selected-invitations",
+  GET_MUSIC_THEMES: "get-music-themes",
 } as const;
 
 export default QUERY_KEY;

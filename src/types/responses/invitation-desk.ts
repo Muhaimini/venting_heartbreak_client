@@ -6,6 +6,7 @@ export interface InvitationDesk {
   created_at: Date;
   updated_at: Date;
   creator: Creator;
+  music_theme?: Music_theme;
 }
 
 export interface Creator {
@@ -14,4 +15,11 @@ export interface Creator {
   avatar: null;
   initial_name: string;
   label_color: string;
+}
+
+export interface Music_theme {
+  id: string;
+  src: string;
+  title: string;
+  artist: string;
 }

@@ -2,8 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./google-fonts/dancing.scss";
+@import "./google-fonts/delafield.scss";
+@import "./google-fonts/fuggles.scss";
+@import "./google-fonts/mea-culpa.scss";
+
+@import "./adobe-font/heandwriting.scss";
+
+@import "./text-animation.scss";
+
 @import "./flip-book-effect.scss";
 @import "./quill-editor.scss";
+
+// @import "./papper.scss";
+
 
 :root {
   --background: #ffffff;

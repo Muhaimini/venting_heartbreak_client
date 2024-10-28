@@ -1,9 +1,10 @@
 import { useState } from "react";
 
-const useAudioPlayer = ({ src }: { src: string }) => {
-  const [audio] = useState(new Audio(src));
+const useAudioPlayer = (props: { src?: string } = { src: "" }) => {
+  const [audio] = useState(new Audio(props?.src));
 
   const onToggle = () => {
+    if (!props?.src) return;
     if (audio.paused) {
       onPlay();
       return;
@@ -12,10 +13,12 @@ const useAudioPlayer = ({ src }: { src: string }) => {
   };
 
   const onPlay = () => {
+    if (!props?.src) return;
     audio.play();
   };
 
   const onPause = () => {
+    if (!props?.src) return;
     audio.pause();
   };
 

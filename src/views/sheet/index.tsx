@@ -5,7 +5,7 @@ import ThemeEditor from "~/models/theme-editor";
 import ThemePreviwe from "~/models/theme-preview";
 import useQueryParams from "~/hooks/customs/use-query-params";
 import useGetInvitationSheets from "~/hooks/queries/use-get-invitation-sheets";
-import first from "lodash/first";
+
 import useStore from "~/store";
 import { useRouter } from "next/navigation";
 import TopBar from "../themes/components/top-bar";
@@ -14,7 +14,7 @@ const SelectedThemeDetails = () => {
   const router = useRouter();
 
   const {
-    invitationPage: { setInitialPages, setActivePage },
+    invitationPage: { setInitialPages },
   } = useStore();
 
   const params = useQueryParams();
@@ -36,10 +36,7 @@ const SelectedThemeDetails = () => {
         content: sheet.content,
       }));
 
-      const active = first(initialPages);
-
       setInitialPages(initialPages);
-      if (active) setActivePage(active.id);
     }
   }, [isFetched, invitationSheets]);
 
@@ -61,7 +58,7 @@ const SelectedThemeDetails = () => {
               Preview
             </button>
           </div>
-          <ThemeEditor />
+          <ThemeEditor invitationDeskId={invitationDeskId} />
         </div>
       </div>
     </div>
